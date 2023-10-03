@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ...（其他头部信息）... -->
+</head>
+<body>
+    <p>This is the home page</p>
+
+    <!-- 添加一个用户名输入框 -->
+    <label for="username">Enter your username:</label>
+    <input type="text" id="username" name="username" required> <!-- Add 'name' attribute -->
+
+    <!-- 添加一个 "Continue" 按钮，点击后跳转到聊天页面 -->
+    <button onclick="enterChat()">Continue</button>
+    
+    <script src="js/client.js" async defer></script>
+
+    <script>
+        // 定义 enterChat 函数，用于跳转到聊天页面
+        function enterChat() {
+            const username = document.getElementById("username").value;
+            if (username.trim() !== "") {
+                // 将用户名存储在本地存储中，以便在聊天页面中访问
+                localStorage.setItem("username", username);
+                // 跳转到聊天页面
+                window.location.href = "chat.html";
+            } else {
+                alert("Please enter a valid username.");
+            }
+        }
+    </script>
+</body>
+</html>

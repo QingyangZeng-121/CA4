@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io simple chat</title>
+    <link rel="stylesheet" href="/css/demo.css">
+</head>
+<body>
+    <div class="sidenav">
+        <div class="inbox__people">
+            <h4>Active users</h4>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- 在聊天记录上方显示用户名 -->
+        <h3>Welcome, <span id="usernamePlaceholder"></span>!</h3>
+
+        <div class="messages__history"></div>
+        <div class="fallback"></div>
+        <div class="inbox__messages"></div>
+
+        <form class="message_form">
+            <input type="text" class="message_form__input" placeholder="Type a message" />
+            <button class="message_form__button" type="submit">
+                Enter
+            </button>
+        </form>
+    </div>
+
+    <!-- Include Socket.io script -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/client.js"></script>
+
+    <script>
+        // 在聊天页面中获取用户名并显示在指定的位置
+        const username = localStorage.getItem("username");
+        if (username) {
+            document.getElementById("usernamePlaceholder").textContent = username;
+        }
+    </script>
+</body>
+</html>
