@@ -51,7 +51,7 @@ h3 {
 }
 
 .messages__history {
-    max-height: 500px;
+    max-height: 440px;
     overflow-y: scroll;
     border: 1px solid #ccc;
     padding: 10px;
