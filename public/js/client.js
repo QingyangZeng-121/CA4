@@ -1,6 +1,7 @@
 const socket = io();
 
 const inboxPeople = document.querySelector(".inbox__people");
+const messageBox = document.querySelector(".messages__history");
 
 // 从本地存储中获取用户名
 let userName = localStorage.getItem("username");
@@ -31,43 +32,41 @@ const addToUsersBox = function (userName) {
     //to true, while also casting from an object to boolean
     if (!!document.querySelector(`.${userName}-userlist`)) {
         return;
-    
     }
     
-    //setup the divs for displaying the connected users
-    //id is set to a string including the username
+    // Setup the divs for displaying the connected users
+    // id is set to a string including the username
     const userBox = `
     <div class="chat_id ${userName}-userlist">
       <h5>${userName}</h5>
     </div>
   `;
-    //set the inboxPeople div with the value of userbox
+
+    // Set the inboxPeople div with the value of userbox
     inboxPeople.innerHTML += userBox;
 };
 
-//call 
+// Call newUserConnected
 newUserConnected();
 
-//when a new user event is detected
+// When a new user event is detected
 socket.on("new user", function (data) {
   data.map(function (user) {
-          return addToUsersBox(user);
-      });
+      return addToUsersBox(user);
+  });
 });
 
-//when a user leaves
+// When a user leaves
 socket.on("user disconnected", function (userName) {
   document.querySelector(`.${userName}-userlist`).remove();
 });
 
-
 const inputField = document.querySelector(".message_form__input");
 const messageForm = document.querySelector(".message_form");
-const messageBox = document.querySelector(".messages__history");
 
 const addNewMessage = ({ user, message, timestamp }) => {
   const time = new Date();
-   const formattedTime = time.toLocaleString("en-US", {
+  const formattedTime = time.toLocaleString("en-US", {
     day: "numeric",
     month: "numeric",
     year: "numeric",
@@ -97,8 +96,19 @@ const addNewMessage = ({ user, message, timestamp }) => {
     </div>
   </div>`;
 
-  //is the message sent or received
-  messageBox.innerHTML += user === userName ? myMsg : receivedMsg;
+  // Determine if the message is from the current user
+  const isMyMessage = user === userName;
+
+  // Create a new message element
+  const messageElement = document.createElement("div");
+  messageElement.className = isMyMessage ? "outgoing__message" : "incoming__message";
+  messageElement.innerHTML = isMyMessage ? myMsg : receivedMsg;
+
+  // Append the message element to the messageBox
+  messageBox.appendChild(messageElement);
+
+  // Scroll to the bottom of the messageBox
+  messageBox.scrollTop = messageBox.scrollHeight;
 };
 
 messageForm.addEventListener("submit", (e) => {
