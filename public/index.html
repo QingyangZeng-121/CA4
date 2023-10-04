@@ -49,12 +49,10 @@
 
     <!-- 添加一个用户名输入框 -->
     <label for="username">Enter your username:</label>
-    <input type="text" id="username" name="username" required> <!-- Add 'name' attribute -->
+    <input type="text" id="username" name="username" autocomplete="off" required> <!-- Add 'name' attribute -->
 
     <!-- 添加一个 "Continue" 按钮，点击后跳转到聊天页面 -->
     <button onclick="enterChat()">Continue</button>
-    
-    <script src="js/client.js" async defer></script>
 
     <script>
         // 定义 enterChat 函数，用于跳转到聊天页面
