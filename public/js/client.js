@@ -52,12 +52,15 @@ newUserConnected();
 // When a new user event is detected
 socket.on("new user", function (data) {
   data.map(function (user) {
+      // 在控制台上显示新用户连接的信息
+      console.log(`New user connected: ${user}`);
       return addToUsersBox(user);
   });
 });
 
 // When a user leaves
 socket.on("user disconnected", function (userName) {
+  console.log(`User disconnected: ${userName}`);
   document.querySelector(`.${userName}-userlist`).remove();
 });
 
