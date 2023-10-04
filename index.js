@@ -19,7 +19,7 @@ const io = socket(server);
 const activeUsers = new Set();
 
 io.on("connection", function (socket) {
-  console.log("Made socket connection");
+  console.log("New user connection.");
 
   socket.on("new user", function (data) {
     socket.userId = data;
