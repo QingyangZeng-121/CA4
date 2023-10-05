@@ -3,28 +3,26 @@ const socket = io();
 const inboxPeople = document.querySelector(".inbox__people");
 const messageBox = document.querySelector(".messages__history");
 
-// 从本地存储中获取用户名
+// Get username from local storage.
 let userName = localStorage.getItem("username");
 
-// 如果本地存储中没有用户名，则默认为空字符串
+// Defaults to an empty string if there is no username in local storage.
 if (!userName) {
     userName = "";
 }
 
 const newUserConnected = function () {
-    // 如果没有用户名，则不执行下面的逻辑
+    // If there is no username, the following logic is not executed.
     if (!userName) {
         return;
     }
 
-    // 发送用户名给服务器
+    // Send the username to the server.
     socket.emit("new user", userName);
 
-    // 添加用户名到用户列表
+    // Add a username to the user list.
     addToUsersBox(userName);
 };
-
-// ... 其他代码不变 ...
 
 const addToUsersBox = function (userName) {
     //This if statement checks whether an element of the user-userlist
@@ -52,7 +50,7 @@ newUserConnected();
 // When a new user event is detected
 socket.on("new user", function (data) {
   data.map(function (user) {
-      // 在控制台上显示新用户连接的信息
+      // Display information about new user connections on the console.
       console.log(`New user connected: ${user}`);
       return addToUsersBox(user);
   });
