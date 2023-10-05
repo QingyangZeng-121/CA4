@@ -5,7 +5,9 @@
 ## Step 1: Log into Codio
 Log into codio via my Aberdeen.
 ## Step 2: Create a Project Folder
-Inside Codio, create a new folder named "CA4". Navigate into the "CA4" directory using the following commands:
+Inside Codio, create a new folder named "CA4". 
+
+Navigate into the "CA4" directory using the following commands:
 
     mkdir CA4
     cd CA4
