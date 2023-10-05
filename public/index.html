@@ -2,8 +2,34 @@
 <html lang="en">
 <head>
     <title>Home page</title>
-    <!-- ...（其他头部信息）... -->
     <style>
+            /* Add this CSS code to your existing stylesheets or create a new one */
+        header {
+            background-color: #007bff; /* Background color for the header */
+            color: white; /* Text color for header links */
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -45,23 +71,32 @@
     </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+        <!-- Your site logo or title goes here -->
+    </header>
+    <!-- ... (rest of your HTML content) ... -->
     <p>This is the home page</p>
 
-    <!-- 添加一个用户名输入框 -->
+    <!-- Add a username input box. -->
     <label for="username">Enter your username:</label>
     <input type="text" id="username" name="username" autocomplete="off" required> <!-- Add 'name' attribute -->
 
-    <!-- 添加一个 "Continue" 按钮，点击后跳转到聊天页面 -->
+    <!-- Add a "Continue" button to jump to the chat page. -->
     <button onclick="enterChat()">Continue</button>
 
     <script>
-        // 定义 enterChat 函数，用于跳转到聊天页面
+        // Define the enterChat function to jump to the chat page.
         function enterChat() {
             const username = document.getElementById("username").value;
             if (username.trim() !== "") {
-                // 将用户名存储在本地存储中，以便在聊天页面中访问
+                // Store usernames in local storage for access on chat pages.
                 localStorage.setItem("username", username);
-                // 跳转到聊天页面
+                // Jump to the chat page.
                 window.location.href = "chat.html";
             } else {
                 alert("Please enter a valid username.");
