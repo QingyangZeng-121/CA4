@@ -4,6 +4,10 @@
 
 ## Step 1: Log into Codio
 Log into codio via myAberdeen.
+##  Navigate into the folder
+Navigate into the "CA4" directory using the following commands:
+
+        cd CA4
 ## Step 2: Initialize a Node.js Project
 Run the following command to initialize an empty Node.js project:
 
